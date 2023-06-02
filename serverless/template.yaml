@@ -33,7 +33,6 @@ Parameters:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
-
   HttpApi:
     Type: AWS::Serverless::HttpApi
     Properties:
@@ -47,7 +46,7 @@ Resources:
         ThrottlingBurstLimit: 200
       CorsConfiguration:
         AllowOrigins:
-          - '*'
+          - "*"
         AllowMethods:
           - GET
           - HEAD
@@ -73,12 +72,12 @@ Resources:
       Description: A simple example includes a HTTP get method to get all items from mock or a DynamoDB table.
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
-#        - DynamoDBCrudPolicy:
-#            TableName: !Ref SampleTable
+      #        - DynamoDBCrudPolicy:
+      #            TableName: !Ref SampleTable
       Environment:
-#        Variables:
-          # Make table name accessible as environment variable from function code during execution
-#          SAMPLE_TABLE: !Ref SampleTable
+      #        Variables:
+      # Make table name accessible as environment variable from function code during execution
+      #          SAMPLE_TABLE: !Ref SampleTable
       Events:
         ExplicitApi: # warning: creates a public endpoint
           Type: HttpApi
@@ -90,6 +89,7 @@ Resources:
             PayloadFormatVersion: "2.0"
             RouteSettings:
               ThrottlingBurstLimit: 600
+      CodeUri: "serverless/src/handlers/get-all-products.js"
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
@@ -103,12 +103,12 @@ Resources:
       Description: A simple example includes a HTTP get method to get one item by id from mock or a DynamoDB table.
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
-#        - DynamoDBCrudPolicy:
-#            TableName: !Ref SampleTable
+      #        - DynamoDBCrudPolicy:
+      #            TableName: !Ref SampleTable
       Environment:
-#        Variables:
-          # Make table name accessible as environment variable from function code during execution
-#          SAMPLE_TABLE: !Ref SampleTable
+      #        Variables:
+      # Make table name accessible as environment variable from function code during execution
+      #          SAMPLE_TABLE: !Ref SampleTable
       Events:
         ExplicitApi: # warning: creates a public endpoint
           Type: HttpApi
@@ -120,6 +120,7 @@ Resources:
             PayloadFormatVersion: "2.0"
             RouteSettings:
               ThrottlingBurstLimit: 600
+      CodeUri: "serverless/src/handlers/get-product-by-id.js"
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
@@ -127,7 +128,7 @@ Resources:
 #  putItemFunction:
 #    Type: AWS::Serverless::Function
 #    Properties:
-  #      Handler: src/handlers/put-item.putItemHandler
+#      Handler: src/handlers/put-item.putItemHandler
 #      Architectures:
 #        - x86_64
 #      Description: A simple example includes a HTTP post method to add one item to a DynamoDB table.
@@ -150,10 +151,10 @@ Resources:
 #            PayloadFormatVersion: "2.0"
 #            RouteSettings:
 #              ThrottlingBurstLimit: 600
-  # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
-  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
+# Simple syntax to create a DynamoDB table with a single attribute primary key, more in
+# https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
-  # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
+# DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
 #  SampleTable:
 #    Type: AWS::Serverless::SimpleTable
 #    Properties:
@@ -168,7 +169,7 @@ Outputs:
   HttpApiUrl:
     Description: URL of your API endpoint
     Value:
-      Fn::Sub: 'https://${HttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${StageName}/'
+      Fn::Sub: "https://${HttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${StageName}/"
   HttpApiId:
     Description: Api id of HttpApi
     Value:
