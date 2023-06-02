@@ -89,7 +89,7 @@ Resources:
             PayloadFormatVersion: "2.0"
             RouteSettings:
               ThrottlingBurstLimit: 600
-      CodeUri: "serverless/src/handlers/get-all-products.js"
+      # CodeUri: "serverless/src/handlers/get-all-products.js"
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
@@ -120,7 +120,7 @@ Resources:
             PayloadFormatVersion: "2.0"
             RouteSettings:
               ThrottlingBurstLimit: 600
-      CodeUri: "serverless/src/handlers/get-product-by-id.js"
+      # CodeUri: "serverless/src/handlers/get-product-by-id.js"
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
